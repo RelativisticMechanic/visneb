@@ -1,0 +1,12 @@
+name: visneb
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - psi4
+  - ase=3.26
+  - numpy
+  - scipy
+  - matplotlib
+  - pillow

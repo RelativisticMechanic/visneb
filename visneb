@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export VISNEB_ROOT="/home/sgautam/projects/visneb"
+
+eval "$(conda shell.bash hook)"
+OLD_CONDA_SHLVL=${CONDA_SHLVL:-0}
+# Cleanup: Restore original conda environment on exit/
+cleanup() {
+    # deactivate until we return to original level
+    while [[ ${CONDA_SHLVL:-0} -gt $OLD_CONDA_SHLVL ]]; do
+        conda deactivate
+    done
+}
+trap cleanup EXIT
+
+conda activate visneb
+python $VISNEB_ROOT/main.py $@
